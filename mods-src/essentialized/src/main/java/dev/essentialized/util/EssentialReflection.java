@@ -31,6 +31,26 @@ public final class EssentialReflection {
       }
    }
 
+   /**
+    * Sets an Essential MutableState&lt;State&lt;Boolean&gt;&gt; to a constant false state. Calls go
+    * through the public MutableState interface, because the implementing classes may not be public.
+    */
+   public static void setToFalseState(Object mutableState, Object owner) {
+      if (mutableState == null) {
+         return;
+      }
+      Object falseState = falseState(owner);
+      if (falseState == null) {
+         return;
+      }
+      try {
+         Class<?> mutable = Class.forName("gg.essential.gui.elementa.state.v2.MutableState", true, owner.getClass().getClassLoader());
+         mutable.getMethod("set", Object.class).invoke(mutableState, falseState);
+      } catch (ReflectiveOperationException e) {
+         LOGGER.warn("Could not hide Essential element", e);
+      }
+   }
+
    public static boolean isHiddenProxy(Object proxy) {
       try {
          Object id = proxy.getClass().getMethod("getEssentialId").invoke(proxy);

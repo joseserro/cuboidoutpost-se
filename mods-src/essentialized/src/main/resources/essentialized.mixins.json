@@ -12,9 +12,7 @@
     "EmoteWheelMixin",
     "MenuProxyMixin",
     "NoticeBannerManagerMixin",
-    "ProxiesHandlerKtMixin",
     "ProxyElementMixin",
-    "ProxyHandlerMixin",
     "PurchaseFlowMixin",
     "SaleNoticeManagerMixin",
     "WardrobeMixin"

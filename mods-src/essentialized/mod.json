@@ -1,12 +1,12 @@
 {
   "id": "essentialized",
   "name": "Essentialized (Forge 1.16.5 port)",
-  "version": "1.0.0+mc1.16.5",
-  "jarName": "essentialized-1.16.5-1.0.0.jar",
+  "version": "1.0.1+mc1.16.5",
+  "jarName": "essentialized-1.16.5-1.0.1.jar",
   "clientOnly": true,
   "manifest": {
     "MixinConfigs": "essentialized.mixins.json",
     "Implementation-Title": "Essentialized",
-    "Implementation-Version": "1.0.0+mc1.16.5"
+    "Implementation-Version": "1.0.1+mc1.16.5"
   }
 }
