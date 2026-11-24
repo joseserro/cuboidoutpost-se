@@ -1,0 +1,14 @@
+{
+  "name": "cuboidoutpost-se",
+  "private": true,
+  "description": "Build tooling for Cuboid Outpost: Splendor Edition",
+  "type": "module",
+  "engines": { "node": ">=22.2" },
+  "scripts": {
+    "fetch": "node tools/fetch-mods.mjs",
+    "check": "node tools/build.mjs --check",
+    "build": "node tools/build.mjs",
+    "add-mod": "node tools/add-mod.mjs",
+    "test-server": "node tools/test-server.mjs"
+  }
+}

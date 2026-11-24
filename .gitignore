@@ -1,8 +1,14 @@
+# build tooling
+/.cache/
+/dist/
+/run/
+node_modules/
+
+# legacy (original author's tooling)
 SyncFromInstance.ps1
 SyncWithStandard.ps1
-src/kubejs/assets/kubejs/textures/block/example_block.png
-src/kubejs/assets/kubejs/textures/item/example_item.png
 src/overrides/mods/*.jar
 src/**/Cuboid*.zip
 src/server files/*.zip
 src/server files/dist
+/.fetch.log
