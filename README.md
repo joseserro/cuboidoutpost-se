@@ -13,8 +13,9 @@ You're stranded on a barren planet and have to rebuild civilisation from a tiny 
   - Platinum and Storage Drawers tags now apply.
   - The missing quantum singularity configs are added.
   - A fresh install no longer fails on two mods that were deleted from CurseForge (TwerkItMeal removed, Configured updated).
+  - Importing into the CurseForge app no longer reports "blocked mods". The MIT-licensed Spawner Bug Fix and More Overlays Updated are bundled in the pack, and Corail Tombstone, which can't be bundled, is replaced by **Corpse**: your items wait in a corpse where you died.
 
-The full list is in [changelogs/v2.0.0.md](changelogs/v2.0.0.md).
+The full lists are in [changelogs/v2.0.0.md](changelogs/v2.0.0.md) and [changelogs/v2.0.1.md](changelogs/v2.0.1.md).
 
 ## Installing
 
@@ -23,6 +24,8 @@ The full list is in [changelogs/v2.0.0.md](changelogs/v2.0.0.md).
 3. Give the game at least 6 GB of RAM.
 
 **Servers:** use `CuboidOutpostSE-<version>-server.zip` and follow the setup guide in [`src/server files/README.md`](src/server%20files/README.md). `level-type` must be set to `skyblockbuilder:custom_skyblock`.
+
+**Upgrading a world from Luxury Edition or 2.0.0:** first empty every Tombstone grave. Tombstone is replaced by Corpse in 2.0.1, so its graves and the items in them disappear when you update.
 
 **Upgrading an existing world:** the new Spice of Life settings only apply to newly created worlds. For an existing world, copy `defaultconfigs/solcarrot-server.toml` over `<world>/serverconfig/solcarrot-server.toml` while the game or server is stopped.
 
@@ -56,6 +59,8 @@ npm run build    # validate, then write dist/CuboidOutpostSE-<version>.zip and -
 | `src/server files/` | Server start scripts and setup guide |
 | `mods-src/` | Mods that aren't on CurseForge, built from source and shipped in `overrides/mods`. Currently only [`essentialized`](mods-src/essentialized/README.md). |
 | `tools/` | The build, fetch, add-mod and test-server scripts |
+| `tools/pack.json` | Pack settings outside the CurseForge manifest. `clientOnly` mods are left out of the server pack. `bundled` mods are ones CurseForge won't distribute ("blocked mods") but whose licence allows bundling; the build ships them in `overrides/mods`, together with their licence from `third-party-licenses/`. Check a mod's licence before adding it here. |
+| `third-party-licenses/` | Licence texts for the bundled third-party mods |
 | `docs/` | Balance notes |
 | `changelogs/` | Release notes |
 
