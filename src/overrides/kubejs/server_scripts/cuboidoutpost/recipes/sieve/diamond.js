@@ -1,7 +1,9 @@
 // priority: 0
 
-onEvent('recipes', e => {
+// Tier 3: diamonds start with the Iron Mesh (quest "Olde Fungus" says so). Rates trimmed, and the
+// per-tier bonuses are small because rolls are flattened (a mesh rolls all lower-tier entries too).
 
+onEvent('recipes', e => {
   // remove standard drop
   e.remove({id: 'exnihilosequentia:sieve/ens_diamond'})
 
@@ -10,19 +12,19 @@ onEvent('recipes', e => {
     "type": "exnihilosequentia:sieve",
     "rolls": [
       {
-        "chance": 0.025,
+        "chance": 0.02,
         "mesh": "iron"
       },
       {
-        "chance": 0.05,
+        "chance": 0.015,
         "mesh": "diamond"
       },
       {
-        "chance": 0.075,
+        "chance": 0.015,
         "mesh": "emerald"
       },
       {
-        "chance": 0.125,
+        "chance": 0.02,
         "mesh": "netherite"
       }
     ],
@@ -39,19 +41,19 @@ onEvent('recipes', e => {
     "type": "exnihilosequentia:sieve",
     "rolls": [
       {
-        "chance": 0.075,
+        "chance": 0.06,
         "mesh": "iron"
       },
       {
-        "chance": 0.1,
+        "chance": 0.03,
         "mesh": "diamond"
       },
       {
-        "chance": 0.125,
+        "chance": 0.02,
         "mesh": "emerald"
       },
       {
-        "chance": 0.15,
+        "chance": 0.02,
         "mesh": "netherite"
       }
     ],

@@ -26,5 +26,10 @@
   "forge:dusts/notarfbadium",
   "forge:nuggets/notarfbadium",
   "forge:ores/notarfbadium",
-  "cuboidmod:quantum_singularities"
+  "cuboidmod:quantum_singularities",
+  "forge:ingots/osmium",
+  "forge:storage_blocks/osmium",
+  "forge:dusts/osmium",
+  "forge:nuggets/osmium",
+  "forge:ores/osmium"
 ]

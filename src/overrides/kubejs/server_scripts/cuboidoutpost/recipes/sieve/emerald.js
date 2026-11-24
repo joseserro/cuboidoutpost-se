@@ -1,5 +1,7 @@
 // priority: 0
 
+// Tier 3/4: emeralds start with the Diamond Mesh. Rates trimmed.
+
 onEvent('recipes', e => {
   // remove standard drop
   e.remove({id: 'exnihilosequentia:sieve/ens_emerald'})
@@ -9,15 +11,15 @@ onEvent('recipes', e => {
     "type": "exnihilosequentia:sieve",
     "rolls": [
       {
-        "chance": 0.05,
+        "chance": 0.03,
         "mesh": "diamond"
       },
       {
-        "chance": 0.075,
+        "chance": 0.02,
         "mesh": "emerald"
       },
       {
-        "chance": 0.125,
+        "chance": 0.02,
         "mesh": "netherite"
       }
     ],
@@ -29,19 +31,20 @@ onEvent('recipes', e => {
     }
   })
 
+  // add drops
   e.custom({
     "type": "exnihilosequentia:sieve",
     "rolls": [
       {
-        "chance": 0.075,
+        "chance": 0.05,
         "mesh": "diamond"
       },
       {
-        "chance": 0.125,
+        "chance": 0.03,
         "mesh": "emerald"
       },
       {
-        "chance": 0.15,
+        "chance": 0.02,
         "mesh": "netherite"
       }
     ],
