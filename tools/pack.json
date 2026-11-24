@@ -4,5 +4,24 @@
       "projectID": 546670,
       "name": "Essential Mod"
     }
+  ],
+  "_bundledHelp": "Mods whose authors disabled CurseForge third-party distribution (the CurseForge app reports them as 'blocked') but whose licence allows redistribution. The client zip ships their jars in overrides/mods with the licence file, and leaves them out of the zip's manifest.json. Only add a mod here after checking its licence.",
+  "bundled": [
+    {
+      "projectID": 399022,
+      "name": "Spawner Bug Fix",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2020 Lupicus",
+      "source": "https://github.com/Lupicus/SpawnerFix",
+      "licenseFile": "third-party-licenses/SpawnerFix-LICENSE.txt"
+    },
+    {
+      "projectID": 391382,
+      "name": "More Overlays Updated",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2016 feldim2425",
+      "source": "https://github.com/r8420/MoreOverlays-1.15",
+      "licenseFile": "third-party-licenses/MoreOverlays-LICENSE.txt"
+    }
   ]
 }

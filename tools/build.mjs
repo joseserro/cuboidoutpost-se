@@ -14,7 +14,7 @@ import { execFileSync } from 'node:child_process'
 import { ZipWriter } from './lib/zip.mjs'
 import { cachedJar, getProject, pool } from './lib/curseforge.mjs'
 import { buildLocalMods } from './lib/local-mods.mjs'
-import { DIST, MANIFEST, OVERRIDES, SERVER_FILES, SRC, loadManifest, loadPackMeta, packSlug, readJson } from './lib/paths.mjs'
+import { DIST, MANIFEST, OVERRIDES, ROOT, SERVER_FILES, SRC, loadManifest, loadPackMeta, packSlug, readJson } from './lib/paths.mjs'
 
 const args = new Set(process.argv.slice(2))
 const manifest = loadManifest()
@@ -41,6 +41,10 @@ function validate() {
     if (!Number.isInteger(f.projectID) || !Number.isInteger(f.fileID)) errors.push(`manifest: bad entry ${JSON.stringify(f)}`)
     if (seen.has(f.projectID)) errors.push(`manifest: duplicate project ${f.projectID}`)
     seen.add(f.projectID)
+  }
+  for (const b of packMeta.bundled ?? []) {
+    if (!seen.has(b.projectID)) errors.push(`tools/pack.json: bundled mod ${b.projectID} (${b.name}) is not in the manifest`)
+    if (!b.licenseFile || !fs.existsSync(path.join(ROOT, b.licenseFile))) errors.push(`tools/pack.json: bundled mod ${b.name} needs an existing licenseFile`)
   }
 
   const files = walk(OVERRIDES)
@@ -105,11 +109,36 @@ function escapeHtml(s) {
 }
 
 // ---------------------------------------------------------------- client zip
+// Bundled mods (tools/pack.json "bundled"): CurseForge won't distribute them, but their
+// licences allow it, so ship the jar + licence in overrides and leave them out of the
+// zip's manifest (otherwise the CurseForge app reports them as "blocked mods").
+const bundled = new Map((packMeta.bundled ?? []).map(b => [b.projectID, b]))
+const clientManifest = { ...manifest, files: manifest.files.filter(f => !bundled.has(f.projectID)) }
 const clientZip = new ZipWriter()
-clientZip.addFile('manifest.json', MANIFEST)
+clientZip.addBuffer('manifest.json', Buffer.from(JSON.stringify(clientManifest, null, 2) + '\n'))
 clientZip.addFile('modlist.html', path.join(SRC, 'modlist.html'))
 clientZip.addDir('overrides', OVERRIDES)
 for (const m of localMods) clientZip.addFile(`overrides/mods/${path.basename(m.jar)}`, m.jar)
+for (const f of manifest.files) {
+  const b = bundled.get(f.projectID)
+  if (!b) continue
+  const jar = cachedJar(f.fileID)
+  if (!jar) {
+    console.error(`Bundled mod ${b.name} (${f.projectID}/${f.fileID}) not downloaded. Run: node tools/fetch-mods.mjs`)
+    process.exit(1)
+  }
+  const jarName = path.basename(jar)
+  clientZip.addFile(`overrides/mods/${jarName}`, jar)
+  clientZip.addBuffer(`overrides/${bundledLicence(b, jarName).name}`, bundledLicence(b, jarName).data)
+}
+
+function bundledLicence(b, jarName) {
+  return {
+    name: `licenses/${jarName.replace(/\.jar$/i, '')}-LICENSE.txt`,
+    data: Buffer.from(`${b.name} (${jarName}) is bundled under the ${b.license} licence.\nSource: ${b.source}\n\n` + fs.readFileSync(path.join(ROOT, b.licenseFile), 'utf8')),
+  }
+}
+if (bundled.size) console.log(`Bundled ${bundled.size} mod(s) in overrides/mods: ${[...bundled.values()].map(b => b.name).join(', ')}`)
 const clientOut = path.join(DIST, `${slug}.zip`)
 clientZip.write(clientOut)
 console.log(`Wrote ${path.relative(process.cwd(), clientOut)} (${clientZip.entries.length} files)`)
@@ -128,6 +157,11 @@ for (const f of manifest.files) {
   const jar = cachedJar(f.fileID)
   if (!jar) { missingJars.push(f.projectID); continue }
   serverZip.addFile(`mods/${path.basename(jar)}`, jar)
+  const b = bundled.get(f.projectID)
+  if (b) {
+    const lic = bundledLicence(b, path.basename(jar))
+    serverZip.addBuffer(lic.name, lic.data)
+  }
 }
 for (const m of localMods) if (!m.clientOnly) serverZip.addFile(`mods/${path.basename(m.jar)}`, m.jar)
 if (missingJars.length) {
