@@ -2,9 +2,11 @@
 [milestones]
 	#Number of hearts you gain for reaching a new milestone.
 	#Range: 0 ~ 1000
-	heartsPerMilestone = 2
+	heartsPerMilestone = 1
 	#A list of numbers of unique foods you need to eat to unlock each milestone, in ascending order. Naturally, adding more milestones lets you earn more hearts.
-	milestones = [5, 10, 15, 20, 25, 30, 50, 75, 105, 140, 180, 225, 275, 325, 375, 425, 475, 525, 550, 575, 600, 625, 650]
+	#Splendor Edition: 20 milestones x 1 heart = up to 20 extra hearts (40 total).
+	#Foods per heart rise each tier of five hearts: 4, then 6, then 8, then 12 (150 unique foods for the full 20).
+	milestones = [4, 8, 12, 16, 20, 26, 32, 38, 44, 50, 58, 66, 74, 82, 90, 102, 114, 126, 138, 150]
 	#Number of hearts you start out with.
 	#Range: 0 ~ 1000
 	baseHearts = 10
