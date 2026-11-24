@@ -1,0 +1,20 @@
+modLoader = "javafml"
+loaderVersion = "[36,)"
+license = "MIT"
+issueTrackerURL = "https://github.com/guygun1/essentialized"
+
+[[mods]]
+modId = "essentialized"
+version = "${version}"
+displayName = "Essentialized"
+authors = "Essentialized contributors (Forge 1.16.5 port for Cuboid Outpost: Splendor Edition)"
+description = '''
+Removes the shop, purchases, cosmetics and emotes from Essential. Client-side; every feature can be toggled in config/essentialized.json.
+'''
+
+[[dependencies.essentialized]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16.5]"
+ordering = "NONE"
+side = "CLIENT"

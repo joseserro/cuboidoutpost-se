@@ -1,0 +1,23 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "dev.essentialized.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "CoinsManagerMixin",
+    "CoinsPurchaseModalMixin",
+    "ConnectionManagerMixin",
+    "CosmeticNoticesMixin",
+    "CosmeticsRenderStateLiveMixin",
+    "EmoteWheelMixin",
+    "MenuProxyMixin",
+    "NoticeBannerManagerMixin",
+    "ProxiesHandlerKtMixin",
+    "ProxyElementMixin",
+    "ProxyHandlerMixin",
+    "PurchaseFlowMixin",
+    "SaleNoticeManagerMixin",
+    "WardrobeMixin"
+  ],
+  "injectors": { "defaultRequire": 0 }
+}
