@@ -55,7 +55,7 @@ S:customgameintroskiptext = '';
 ##[minecraftwindow]
 
 [A minecraft restart is required after changing this value.]
-S:customwindowtitle = 'Cuboid Outpost (LE)';
+S:customwindowtitle = 'Cuboid Outpost: Splendor Edition';
 [A minecraft restart is required after changing this value.]
 B:customwindowicon = 'false';
 

@@ -8,5 +8,5 @@ start_server() {
     java -server -Xms${MIN_RAM} -Xmx${MAX_RAM} -jar ${SERVER_JAR} nogui
 }
 
-echo "Starting Cuboid Outpost Server..."
+echo "Starting Cuboid Outpost: Splendor Edition Server..."
 start_server

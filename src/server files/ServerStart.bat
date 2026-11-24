@@ -3,7 +3,7 @@
 call settings.bat
 
 :start_server
-echo Starting Cuboid Outpost Server...
+echo Starting Cuboid Outpost: Splendor Edition Server...
 java -server -Xms%MIN_RAM% -Xmx%MAX_RAM% -jar %SERVER_JAR% nogui
 exit /B
 
