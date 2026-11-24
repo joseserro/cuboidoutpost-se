@@ -1,3 +1,7 @@
+// priority: 0
+// Item tags are datapack data, so this must be a server script (it used to sit in
+// startup_scripts, where the item.tags event never fires, so none of these tags applied).
+
 // Listen to item tag event
 onEvent('item.tags', event => {
     event.add('forge:storage_blocks', 'kubejs:platinum_block')
