@@ -1,4 +1,80 @@
-# Cuboid Outpost (Luxury Edition) ModPack
+# Cuboid Outpost: Splendor Edition
+
+A Minecraft **1.16.5 / Forge 36.2.26** modpack, forked from [Cuboid Outpost (Luxury Edition)](https://github.com/CuboidDroid/cuboidoutpost-le) by [CuboidDroid](https://github.com/CuboidDroid).
+
+You're stranded on a barren planet and have to rebuild civilisation from a tiny outpost, guided by a quest line of more than 1,500 quests. Splendor Edition keeps the original quests, storyline and mod list. It reworks the progression balance so the quest line can't be skipped, and it fixes long-standing pack bugs.
+
+## What's different from Luxury Edition
+
+- **Sieving follows the quest line.** The Emerald Mesh now needs osmium from the intended Smeltery quest, so you can no longer go straight from your first iron to Mekanism. Upper-mesh drop rates are lower, while the early game plays the same. Details: [docs/balance/sieve-progression.md](docs/balance/sieve-progression.md).
+- **Spice of Life:** 1 extra heart per milestone, up to 20 extra hearts, with more new foods needed for each heart as you go (4, then 6, 8 and 12 foods per heart).
+- **Essential** is included, together with **Essentialized** (ported to 1.16.5 for this pack), which removes Essential's shop, purchases, cosmetics and emotes. Both are client-side only.
+- **Fixes:**
+  - Platinum and Storage Drawers tags now apply.
+  - The missing quantum singularity configs are added.
+  - A fresh install no longer fails on two mods that were deleted from CurseForge (TwerkItMeal removed, Configured updated).
+
+The full list is in [changelogs/v2.0.0.md](changelogs/v2.0.0.md).
+
+## Installing
+
+1. Get the pack zip, `CuboidOutpostSE-<version>.zip`, from this repository's [Releases](https://github.com/joseserro/cuboidoutpost-se/releases), or build it yourself (see below).
+2. In the CurseForge app, choose **Create Custom Profile → Import** and select the zip. CurseForge downloads all the mods.
+3. Give the game at least 6 GB of RAM.
+
+**Servers:** use `CuboidOutpostSE-<version>-server.zip` and follow the setup guide in [`src/server files/README.md`](src/server%20files/README.md). `level-type` must be set to `skyblockbuilder:custom_skyblock`.
+
+**Upgrading an existing world:** the new Spice of Life settings only apply to newly created worlds. For an existing world, copy `defaultconfigs/solcarrot-server.toml` over `<world>/serverconfig/solcarrot-server.toml` while the game or server is stopped.
+
+## Reporting issues
+
+Please report problems with Splendor Edition in this repository's [Issues](https://github.com/joseserro/cuboidoutpost-se/issues), not to the original Luxury Edition project, because its author isn't responsible for the changes made here.
+
+## Building the pack
+
+You need **Node.js 22.2+** (no npm packages are required) and a **JDK 9+** (`javac` on `PATH` or `JAVA_HOME`). The JDK compiles the pack's own mods in `mods-src/` for Java 8.
+
+```sh
+npm run fetch    # download all mods from CurseForge into .cache/ (no API key needed)
+npm run build    # validate, then write dist/CuboidOutpostSE-<version>.zip and -server.zip
+```
+
+| Command | What it does |
+|---|---|
+| `npm run fetch` | Downloads every mod in `src/manifest.json` from CurseForge into `.cache/mods/`. |
+| `npm run check` | Validates JSON, KubeJS script syntax and quest translation keys. |
+| `npm run build` | Validates the pack, regenerates `src/modlist.html`, builds the mods in `mods-src/`, and writes the client zip (CurseForge import) and the server zip (with server-side mods). |
+| `npm run add-mod -- <projectID> [--file <fileID>] [--client-only]` | Adds or updates a CurseForge mod in the manifest. Without `--file` it picks the newest Forge 1.16.5 file. `--client-only` keeps the mod out of the server pack (recorded in `tools/pack.json`). |
+| `npm run test-server -- [--accept-eula] [--fresh] [--load-client-mods] [--cmd "<command>"]` | Boots the pack on a local headless Forge server in `run/server` (Java 8 and Forge are downloaded automatically) and reports KubeJS errors and crashes. You must accept the [Minecraft EULA](https://aka.ms/MinecraftEULA) once. |
+
+### Repository layout
+
+| Path | Contents |
+|---|---|
+| `src/manifest.json` | CurseForge mod list (project and file IDs) |
+| `src/overrides/` | Configs, KubeJS scripts, quests (`config/ftbquests`) and quest text (`kubejs/assets/cuboidquests/lang`) |
+| `src/server files/` | Server start scripts and setup guide |
+| `mods-src/` | Mods that aren't on CurseForge, built from source and shipped in `overrides/mods`. Currently only [`essentialized`](mods-src/essentialized/README.md). |
+| `tools/` | The build, fetch, add-mod and test-server scripts |
+| `docs/` | Balance notes |
+| `changelogs/` | Release notes |
+
+### Testing tips
+
+- Scripts in `tools/test-scripts/` are added to the test server only and never ship. `zz_test_recipe_probe.js` logs the live recipes that match its pattern to `run/server/logs/kubejs/server.txt`.
+- `/kubejs export` lists recipes as they were *before* KubeJS scripts changed them. Use the recipe probe to see the final result.
+
+## Credits and license
+
+- **Cuboid Outpost and Cuboid Outpost (Luxury Edition)**, including the quests, storyline and pack design, are by **CuboidDroid** and licensed under the [GNU GPL v3](LICENSE). This fork is GPL v3 too. You can support the original author on [Patreon](https://www.patreon.com/cuboiddroid).
+- **Essentialized** is by the Essentialized contributors ([MIT](mods-src/essentialized/LICENSE)). The 1.16.5 port is in `mods-src/essentialized`.
+- Every included mod belongs to its own author; see [src/modlist.html](src/modlist.html).
+
+---
+
+## Original Luxury Edition README (by CuboidDroid)
+
+> This is the original project's README, kept for reference. The Discord, Patreon and PayPal links below belong to CuboidDroid and the original Cuboid Outpost project. Report Splendor Edition issues [here](https://github.com/joseserro/cuboidoutpost-se/issues) instead.
 
 [Cuboid Outpost](https://www.curseforge.com/minecraft/modpacks/cuboid-outpost) was my first attempt at creating a ModPack for Minecraft. It's been amazingly well received - way beyond my hopes and expectations. This version of the pack is for players / communities with higher-spec machines to play on. 
 

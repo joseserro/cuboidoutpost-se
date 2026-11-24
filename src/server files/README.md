@@ -62,6 +62,8 @@ Run `ServerStart.sh` to start up the server. It will probably fail the first tim
 
 # Upgrading
 
+> **Spice of Life settings in existing worlds:** `defaultconfigs/solcarrot-server.toml` is only copied into a world when the world is first created. To apply the Splendor Edition heart progression to an existing world, stop the server and copy `defaultconfigs/solcarrot-server.toml` over `world/serverconfig/solcarrot-server.toml`.
+
 To upgrade, the process is basically the same as installing for the first time, except that if you have made any custom changes to config files, you will need to re-apply them after the upgrade has taken place.
 
 Follow these steps:
