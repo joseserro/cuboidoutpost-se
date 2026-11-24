@@ -15,7 +15,7 @@ You're stranded on a barren planet and have to rebuild civilisation from a tiny 
   - A fresh install no longer fails on two mods that were deleted from CurseForge (TwerkItMeal removed, Configured updated).
   - Importing into the CurseForge app no longer reports "blocked mods". The MIT-licensed Spawner Bug Fix and More Overlays Updated are bundled in the pack, and Corail Tombstone, which can't be bundled, is replaced by **Corpse**: your items wait in a corpse where you died.
 
-The full lists are in [changelogs/v2.0.0.md](changelogs/v2.0.0.md) and [changelogs/v2.0.1.md](changelogs/v2.0.1.md).
+Release notes for every version are in [changelogs/](changelogs/).
 
 ## Installing
 
